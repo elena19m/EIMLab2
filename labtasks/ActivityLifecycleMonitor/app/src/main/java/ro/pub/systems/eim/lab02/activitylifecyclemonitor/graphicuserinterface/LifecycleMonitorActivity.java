@@ -111,10 +111,12 @@ public class LifecycleMonitorActivity extends AppCompatActivity {
    protected void onSaveInstanceState(Bundle savedInstanceState) {
        // apelarea metodei din activitatea parinte este recomandata, dar nu obligatorie
         super.onSaveInstanceState(savedInstanceState);
+       EditText usernameEditText = (EditText)findViewById(R.id.username_edit_text);
+       EditText passwordEditText = (EditText)findViewById(R.id.password_edit_text);
        CheckBox obj= (CheckBox) findViewById(R.id.remember_me_checkbox);
        if(obj.isChecked()){
-
-
+           savedInstanceState.putString("username", usernameEditText.getText().toString());
+           savedInstanceState.putString("password", passwordEditText.getText().toString());
        }
    }
 
