@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 
@@ -62,7 +63,65 @@ public class LifecycleMonitorActivity extends AppCompatActivity {
         Button cancelButton = (Button) findViewById(R.id.cancel_button);
         cancelButton.setOnClickListener(buttonClickListener);
 
-        Log.d(Constants.TAG, "onCreate() method was invoked without a previous state");
+        if (savedInstanceState == null)
+            Log.d(Constants.TAG, "onCreate() method was invoked without a previous state");
+        else
+            Log.d(Constants.TAG, "onCreate() method was invoked with a previous state");
+
     }
 
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+
+        Log.d(Constants.TAG, "onRestart() method was invoked");
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Log.d(Constants.TAG, "onStart() method was invoked");
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Log.d(Constants.TAG, "onResume() method was invoked");
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        Log.d(Constants.TAG, "onPause() method was invoked");
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        Log.d(Constants.TAG, "onStop() method was invoked");
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        Log.d(Constants.TAG, "onDestroy() method was invoked");
+    }
+
+   @Override
+   protected void onSaveInstanceState(Bundle savedInstanceState) {
+       // apelarea metodei din activitatea parinte este recomandata, dar nu obligatorie
+        super.onSaveInstanceState(savedInstanceState);
+       CheckBox obj= (CheckBox) findViewById(R.id.remember_me_checkbox);
+       if(obj.isChecked()){
+
+
+       }
+   }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        // apelarea metodei din activitatea parinte este recomandata, dar nu obligatorie
+        super.onRestoreInstanceState(savedInstanceState);
+        // ...
+    }
 }
